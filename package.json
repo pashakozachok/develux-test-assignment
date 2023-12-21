@@ -1,0 +1,40 @@
+{
+  "name": "develux-test-assignment",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "lint": "eslint --debug src/**/*.mjs",
+    "lint:write": "eslint --debug src/**/*.mjs --fix",
+    "prettier": "prettier --write src/**/*.mjs"
+  },
+  "author": "Pavlo Kozachok",
+  "license": "ISC",
+  "dependencies": {
+    "bitbucket": "^2.11.0",
+    "eslint": "^8.56.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^7.3.0",
+    "node-fetch": "^3.3.2",
+    "prettier": "^3.1.1",
+    "save-dev": "^0.0.1-security",
+    "sync-fetch": "^0.5.2",
+    "yargs": "^17.7.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.(mjs)": [
+      "npm run lint:write",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
