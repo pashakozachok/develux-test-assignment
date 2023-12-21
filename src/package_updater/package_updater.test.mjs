@@ -1,8 +1,14 @@
 // package_updater.test.mjs
-import { jest, expect } from '@jest/globals';
-import { execSync } from 'child_process';
+import {
+  jest,
+  expect,
+  it,
+  afterEach,
+  beforeEach,
+  describe,
+} from '@jest/globals';
 import PackageUpdater from './package_updater.mjs';
-import { BranchAlreadyExistsError, NotInAGitRepositoryError } from '../errors/index.mjs';
+import { BranchAlreadyExistsError } from '../errors/index.mjs';
 
 jest.mock('child_process', () => ({
   __esModule: true,
@@ -48,6 +54,8 @@ describe('PackageUpdater', () => {
   it('should throw BranchAlreadyExistsError if branch already exists', () => {
     packageUpdater._checkBranchExists = jest.fn(() => true);
 
-    expect(() => packageUpdater._createBranch()).toThrow(BranchAlreadyExistsError);
+    expect(() => packageUpdater._createBranch()).toThrow(
+      BranchAlreadyExistsError
+    );
   });
 });

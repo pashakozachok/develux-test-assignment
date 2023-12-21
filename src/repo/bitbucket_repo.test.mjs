@@ -1,5 +1,12 @@
 // bitbucket_repo.test.mjs
-import { jest, describe, beforeEach, afterEach, it, expect } from '@jest/globals';
+import {
+  jest,
+  describe,
+  beforeEach,
+  afterEach,
+  it,
+  expect,
+} from '@jest/globals';
 import { BitBucketRepo } from './index.mjs';
 import RepoBase from './repo_base.mjs';
 
@@ -9,7 +16,10 @@ describe('BitBucketRepo', () => {
   let bitBucketRepo;
 
   beforeEach(() => {
-    bitBucketRepo = new BitBucketRepo({ token: 'test-token' }, { repoSlug: 'test-repo', workspace: 'test-workspace' });
+    bitBucketRepo = new BitBucketRepo(
+      { token: 'test-token' },
+      { repoSlug: 'test-repo', workspace: 'test-workspace' }
+    );
   });
 
   afterEach(() => {

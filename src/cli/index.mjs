@@ -7,7 +7,9 @@ export const validateNpmVersion = (value) => {
   const npmVersionRegex = /^\d+\.\d+\.\d+$/; // Example regex for semantic versioning (X.Y.Z)
 
   if (!npmVersionRegex.test(value)) {
-    throw new Error('Error: Invalid npm version. Please provide a valid semantic version (X.Y.Z).');
+    throw new Error(
+      'Error: Invalid npm version. Please provide a valid semantic version (X.Y.Z).'
+    );
   }
 
   return true;
@@ -36,7 +38,9 @@ export const validatePackageExist = (packageName, packageVersion) => {
   }
 
   if (exists) return exists;
-  throw new Error(`Error: Check if the ${packageName}@${packageVersion} exists on npm.io`);
+  throw new Error(
+    `Error: Check if the ${packageName}@${packageVersion} exists on npm.io`
+  );
 };
 
 const runCLI = () => {
@@ -44,25 +48,35 @@ const runCLI = () => {
     .usage('$0 update [package-name] [version]')
     .version(false)
     .option('package-name', {
-      describe: 'Name of the package', demandOption: true, type: 'string',
+      describe: 'Name of the package',
+      demandOption: true,
+      type: 'string',
     })
     .option('version', {
-      describe: 'Version of the package', demandOption: true, type: 'string', validate: validateNpmVersion,
+      describe: 'Version of the package',
+      demandOption: true,
+      type: 'string',
+      validate: validateNpmVersion,
     })
     .option('config', {
-      describe: 'Config file path', demandOption: true, type: 'string', validate: validateConfigFileExists,
+      describe: 'Config file path',
+      demandOption: true,
+      type: 'string',
+      validate: validateConfigFileExists,
     })
     .check(({ version }) => validateNpmVersion(version))
     .check(({ config }) => validateConfigFileExists(config))
-    .check(({ packageName, version }) => validatePackageExist(packageName, version))
+    .check(({ packageName, version }) =>
+      validatePackageExist(packageName, version)
+    )
     .help();
 
   const config = JSON.parse(fs.readFileSync(argv.config).toString());
 
-  return ({
+  return {
     ...argv,
     config,
-  });
+  };
 };
 
 export default runCLI;

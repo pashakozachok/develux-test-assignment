@@ -2,7 +2,6 @@ import RepoBase from './repo_base.mjs';
 import bb from 'bitbucket';
 
 export default class BitBucketRepo extends RepoBase {
-
   constructor(authData, repo) {
     super();
     this._repo = repo;

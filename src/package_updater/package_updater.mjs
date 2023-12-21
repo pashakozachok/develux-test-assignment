@@ -1,5 +1,8 @@
 import { execSync } from 'child_process';
-import { BranchAlreadyExistsError, NotInAGitRepositoryError } from '../errors/index.mjs';
+import {
+  BranchAlreadyExistsError,
+  NotInAGitRepositoryError,
+} from '../errors/index.mjs';
 
 const TEMP_BRANCH_NAME = 'temp-branch';
 
@@ -40,7 +43,10 @@ export default class PackageUpdater {
     execSync(`git checkout -b ${TEMP_BRANCH_NAME}`, { stdio: 'ignore' });
     execSync(`git branch -D ${this.masterBranchName}`, { stdio: 'ignore' });
     execSync(`git fetch origin ${this.masterBranchName}`, { stdio: 'ignore' });
-    execSync(`git checkout -b ${this.masterBranchName} --track origin/${this.masterBranchName}`, { stdio: 'ignore' });
+    execSync(
+      `git checkout -b ${this.masterBranchName} --track origin/${this.masterBranchName}`,
+      { stdio: 'ignore' }
+    );
     execSync(`git branch -D ${TEMP_BRANCH_NAME}`, { stdio: 'ignore' });
   }
 
@@ -50,12 +56,17 @@ export default class PackageUpdater {
   }
 
   _updatePackageVersion() {
-    execSync(`npm install ${this.packageName}@${this.packageVersion} --save`, { stdio: 'ignore' });
+    execSync(`npm install ${this.packageName}@${this.packageVersion} --save`, {
+      stdio: 'ignore',
+    });
   }
 
   _commitChanges() {
     execSync(`git add package.json`);
-    execSync(`git commit -m "chore: update ${this.packageName} to ${this.packageVersion}"`, { stdio: 'ignore' });
+    execSync(
+      `git commit -m "chore: update ${this.packageName} to ${this.packageVersion}"`,
+      { stdio: 'ignore' }
+    );
   }
 
   _checkBranchExists(branchName) {
