@@ -1,7 +1,6 @@
 // package_update_manager.test.mjs
 import { afterEach, beforeEach, describe, expect, jest } from '@jest/globals';
 import PackageUpdateManager from './package_update_manager.mjs';
-import { PackageUpdater } from '../src/package_updater/index.mjs';
 
 // Mock the 'package_updater' module
 jest.mock('../src/package_updater/index.mjs', {
@@ -17,7 +16,6 @@ jest.mock('../src/package_updater/index.mjs', {
 
 describe('PackageUpdateManager', () => {
   let repoMock;
-  let updaterMock;
   const masterBranchName = 'master';
   const packageName = 'test-package';
   const version = '1.0.0';

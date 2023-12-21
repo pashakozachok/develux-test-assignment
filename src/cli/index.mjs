@@ -25,7 +25,7 @@ export const validateConfigFileExists = (value) => {
 
 export const validatePackageExist = (packageName, packageVersion) => {
   const registryUrl = `https://registry.npmjs.org/${packageName}`;
-  let exists = false;
+  let exists;
 
   try {
     const response = fetch(registryUrl);

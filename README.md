@@ -16,7 +16,7 @@
 Project Name is a PackageUpdater. It aims to update the packages in your git repo.
 
 ## Configs
-You need to copy [config.sample.json](config%2Fconfig.sample.json)` file and replace the values with your own.
+You need to copy config.sample.json file and replace the values with your own.
 
 ## Setup
 
